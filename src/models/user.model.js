@@ -1,18 +1,25 @@
 import { DataTypes } from "sequelize";
-import { Sequelize } from "../config/database.js";
+import sequelize from "../config/database.js";
 
-// Define the User model    
-export const User = sequelize.define('User', {
-    name: {
-        type: Sequelize.STRING,
-        allowNull: false,   
-    },
-    email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-    },
-    password: {
-        type: DataTypes.STRING(100),
-        allowNull: false,   
-    }
+const modelUser = sequelize.define('User', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+  },
+  email: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.STRING(100),
+    allowNull: false,
+  },
 });
+
+export default modelUser;
